@@ -34,8 +34,8 @@ int main()
         Eil_vect[i].egz = integer;
         for (int j = 0; j < 5; j++) 
         {
-            cin>>integer;
-            Eil_vect[i].paz[j]=integer;
+            cin>>pazym;
+            Eil_vect[i].paz[j]=pazym;
             Eil_vect[i].GP+=Eil_vect[i].paz[j];
         }
         Eil_vect[i].GP = Eil_vect[i].GP / 5.0;
