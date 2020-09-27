@@ -3,6 +3,7 @@
 #include <vector>
 #include <iomanip>
 #include <bits/stdc++.h>
+#include <random>
 
 using std::cout;
 using std::cin;
@@ -13,11 +14,12 @@ struct duomuo {
     string Pav;
     int paz[10];
     int egz;
-    float GP = 0;
+    double GP = 0;
 };
 
 int main()
 {
+    srand(time(NULL));
     duomuo Eil; duomuo Eil_mas[5];
     vector<duomuo> Eil_vect;
     int n;
@@ -36,33 +38,59 @@ int main()
         cin>>pavarde;
         Eil_vect[i].Vard = vardas;
         Eil_vect[i].Pav = pavarde;
-        cout<<"Iveskite egzamino paz. ";
-        cin>>integer;
-        cout<<"Iveskite kiek pazymiu bus "; 
-        int k;
-        cin>>k;
-        cout<<"Iveskite " <<k << " pazymiu/us ";
-        Eil_vect[i].egz = integer;
-        mediana[0]=integer;
-        for (int j = 0; j < k; j++) 
-        {
+        string veiksmas;
+        cout<<"Iveskite, ka norite, kad darytu programa: Skaiciuotu jusu ivestus duomenis (iveskite 'S') ar generuotu atsitiktinus pazymius (iveskite 'G')";
+        cin>>veiksmas;
+        int el_sk;
+        if (veiksmas == "S"){
+          cout<<"Iveskite egzamino paz. ";
+          cin>>integer;
+          cout<<"Iveskite kiek pazymiu bus "; 
+          int k;
+          cin>>k;
+          cout<<"Iveskite " <<k << " pazymiu/us ";
+          Eil_vect[i].egz = integer;
+          mediana[0]=integer;
+          for (int j = 0; j < k; j++) 
+          {
             cin>>pazym;
             Eil_vect[i].paz[j]=pazym;
             Eil_vect[i].GP+=Eil_vect[i].paz[j];
             mediana[j+1]= pazym;
+          }
+          el_sk = k+1;
         }
         
-        Eil_vect[i].GP = Eil_vect[i].GP / (k+1)/1.0;
+        else if (veiksmas == "G"){
+          Eil_vect[i].egz= 0 + ( std::rand() % ( 10 ) );
+          mediana[0]=Eil_vect[i].egz;
+          cout<<"Egzamino paz. = "<< Eil_vect[i].egz<<std::endl;
+          int sk;
+          sk = 0 + ( std::rand() % ( 10 ) );
+          cout<<"Pazymiu skaicius = "<< sk <<std::endl;
+          //cout<<Eil_vect[i].paz[0]<<" ";
+          for(int k=0;k<sk;k++)
+          {
+            Eil_vect[i].paz[k]= 0 + ( std::rand() % ( 10 + 1 -1 ) );
+            mediana[k+1]=Eil_vect[i].paz[k];
+            Eil_vect[i].GP+=Eil_vect[i].paz[k];
+            //cout<<Eil_vect[i].paz[k+1]<<" ";
+          }
+          el_sk = sk + 1;
+          cout<< "AAA" <<el_sk;
+        }
+        
+        Eil_vect[i].GP = Eil_vect[i].GP / (el_sk-1)/1.0;
         Eil_vect[i].GP = Eil_vect[i].GP * 0.4 + 0.6 * Eil_vect[i].egz;
         //medianai skaiciuot
-        for (int g=0; g<(k+1); g++) {
+        for (int g=0; g<(el_sk); g++) {
           cout<<mediana[g]<<" ";
         }
         cout<<std::endl;
-        std::sort(mediana,mediana + (k+1));
-        if ((k+1) % 2 != 0) 
-        medianai = mediana[k / 2]; 
-        else medianai = (mediana[(k - 1) / 2] + mediana[(k+1) / 2]) / 2.0;
+        std::sort(mediana,mediana + (el_sk));
+        if ((el_sk) % 2 != 0) 
+        medianai = mediana[(el_sk - 1) / 2]; 
+        else medianai = (mediana[(el_sk) / 2] + mediana[ el_sk / 2 - 1]) / 2.0;
 
     }
     //ivedimas virsuj
@@ -76,7 +104,7 @@ int main()
     for(int i=0;i<n;i++)
     { 
       cout << std::left << std::setw(15)<< Eil_vect[i].Vard <<std::left <<std::setw(15)<< Eil_vect[i].Pav;
-      if (ats == "R") cout<< Eil_vect[i].GP <<std::endl;
-      else if (ats =="M") cout<< medianai <<std::endl;
+      if (ats == "R") cout<< std::setprecision(3)<<Eil_vect[i].GP <<std::endl;
+      else if (ats =="M") cout<< std::setprecision(3) << medianai <<std::endl;
     }
 }
