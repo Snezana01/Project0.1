@@ -26,6 +26,7 @@ int main()
     int n;
     cout<<"Iveskite kiek studentu ";
     cin>>n;
+    if (n < 0) cout<< "Studentu skaicius negali buti neigiamas"<<std::endl;
     string vardas, pavarde;
     int integer;
     int pazym;
@@ -41,6 +42,8 @@ int main()
         string veiksmas;
         cout<<"Iveskite, ka norite, kad darytu programa: Skaiciuotu jusu ivestus duomenis (iveskite 'S') ar generuotu atsitiktinus pazymius (iveskite 'G')";
         cin>>veiksmas;
+        if (veiksmas != "S" || veiksmas != "G")
+        {cout << "Tokio veiksmo nera, bandykite dar karta"; }
         int el_sk;
         if (veiksmas == "S"){
           cout<<"Iveskite egzamino paz. ";
@@ -49,6 +52,7 @@ int main()
           int k;
           cin>>k;
           cout<<"Iveskite " <<k << " pazymiu/us ";
+          if (integer >= 0 && k >= 0){
           Eil_vect[i].egz = integer;
           mediana[0]=integer;
           
@@ -60,6 +64,8 @@ int main()
             mediana[j+1]= pazym;
           }
           el_sk = k+1;
+          }
+          else cout<<"Ivedete egzamino pazymi arba pazymiu skaiciu netinkamu formatu, bandykite dar karta";
         }
         
         else if (veiksmas == "G"){
@@ -96,6 +102,7 @@ int main()
     cout << std::left << std::setw(15)<< "Vardas" <<std::left <<std::setw(15)<< "Pavarde ";
     if (ats == "R") cout<<"Galutinis paz"<<std::endl;
     else if (ats =="M") cout<<"Mediana"<<std::endl;
+    else cout<<std::endl<<"Tokio veiksmo nera, bandykite dar karta"<<std::endl;
     cout<<"___________________________________________"<<std::endl;
     for(int i=0;i<n;i++)
     { 
@@ -103,4 +110,5 @@ int main()
       if (ats == "R") cout<< std::setprecision(3)<<Eil_vect[i].GP <<std::endl;
       else if (ats =="M") cout<< std::setprecision(3) << Eil_vect[i].medianai <<std::endl;
     }
+
 }
