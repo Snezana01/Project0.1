@@ -29,7 +29,7 @@ int main()
     string vardas, pavarde;
     int integer;
     int pazym;
-    int mediana[15]={0};
+    int mediana[21]={0};
     for(int i=0;i<n;i++)
     {
         Eil_vect.push_back(duomuo());
@@ -45,24 +45,24 @@ int main()
         if (veiksmas == "S"){
           cout<<"Iveskite egzamino paz. ";
           cin>>integer;
-          cout<<"Iveskite kiek pazymiu bus "; 
-          int k;
-          cin>>k;
-          cout<<"Iveskite " <<k << " pazymiu/us ";
-          if ((integer >= 0 && integer <= 10) && k >= 0){
+          cout<<"Iveskite pazymiu/us (kai nuspresite, kad ivedet visus, iveskite '-1' ) ";
+          if (integer >= 0 && integer <= 10){
           Eil_vect[i].egz = integer;
           mediana[0]=integer;
-          
-          for (int j = 0; j < k; j++) 
+          cin>>pazym;
+          int p = 0;
+          while (pazym != -1)
           {
-            cin>>pazym;
-            Eil_vect[i].paz[j]=pazym;
-            Eil_vect[i].GP+=Eil_vect[i].paz[j];
-            mediana[j+1]= pazym;
+            Eil_vect[i].paz[p]=pazym;
+            Eil_vect[i].GP+=Eil_vect[i].paz[p];
+            mediana[p+1]= pazym;
+            p+=1;
+            if ((pazym >=0 && pazym <=10) || pazym == -1) cin>>pazym;
+          el_sk = p+1;
           }
-          el_sk = k+1;
           }
           else cout<<"Ivedete egzamino pazymi arba pazymiu skaiciu netinkamu formatu, bandykite dar karta";
+          
         }
         
         else if (veiksmas == "G"){
