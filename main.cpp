@@ -15,6 +15,7 @@ struct duomuo {
     int paz[10];
     int egz;
     double GP = 0;
+    double medianai;
 };
 
 int main()
@@ -29,7 +30,6 @@ int main()
     int integer;
     int pazym;
     int mediana[15]={0};
-    double medianai;
     for(int i=0;i<n;i++)
     {
         Eil_vect.push_back(duomuo());
@@ -51,6 +51,7 @@ int main()
           cout<<"Iveskite " <<k << " pazymiu/us ";
           Eil_vect[i].egz = integer;
           mediana[0]=integer;
+          
           for (int j = 0; j < k; j++) 
           {
             cin>>pazym;
@@ -78,14 +79,14 @@ int main()
           }
           el_sk = sk + 1;
         }
-        if (el_sk > 1){
+        if (Eil_vect[i].GP != 0){
         Eil_vect[i].GP = Eil_vect[i].GP / (el_sk-1)/1.0;}
         Eil_vect[i].GP = Eil_vect[i].GP * 0.4 + 0.6 * Eil_vect[i].egz;
         //medianai skaiciuot
         std::sort(mediana,mediana + (el_sk));
         if ((el_sk) % 2 != 0) 
-        medianai = mediana[(el_sk - 1) / 2]; 
-        else medianai = (mediana[(el_sk) / 2] + mediana[ el_sk / 2 - 1]) / 2.0;
+        Eil_vect[i].medianai = mediana[(el_sk - 1) / 2]; 
+        else Eil_vect[i].medianai = (mediana[(el_sk) / 2] + mediana[ el_sk / 2 - 1]) / 2.0;
 
     }
     //ivedimas virsuj
@@ -100,6 +101,6 @@ int main()
     { 
       cout << std::left << std::setw(15)<< Eil_vect[i].Vard <<std::left <<std::setw(15)<< Eil_vect[i].Pav;
       if (ats == "R") cout<< std::setprecision(3)<<Eil_vect[i].GP <<std::endl;
-      else if (ats =="M") cout<< std::setprecision(3) << medianai <<std::endl;
+      else if (ats =="M") cout<< std::setprecision(3) << Eil_vect[i].medianai <<std::endl;
     }
 }
