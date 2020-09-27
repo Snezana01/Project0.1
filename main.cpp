@@ -62,31 +62,26 @@ int main()
         }
         
         else if (veiksmas == "G"){
-          Eil_vect[i].egz= 0 + ( std::rand() % ( 10 ) );
+          Eil_vect[i].egz= 0 + ( std::rand() % ( 11 ) );
           mediana[0]=Eil_vect[i].egz;
           cout<<"Egzamino paz. = "<< Eil_vect[i].egz<<std::endl;
           int sk;
-          sk = 0 + ( std::rand() % ( 10 ) );
+          sk = 0 + ( std::rand() % ( 15 ) );
           cout<<"Pazymiu skaicius = "<< sk <<std::endl;
           //cout<<Eil_vect[i].paz[0]<<" ";
           for(int k=0;k<sk;k++)
           {
-            Eil_vect[i].paz[k]= 0 + ( std::rand() % ( 10 + 1 -1 ) );
+            Eil_vect[i].paz[k]= 0 + ( std::rand() % ( 11 ) );
             mediana[k+1]=Eil_vect[i].paz[k];
             Eil_vect[i].GP+=Eil_vect[i].paz[k];
             //cout<<Eil_vect[i].paz[k+1]<<" ";
           }
           el_sk = sk + 1;
-          cout<< "AAA" <<el_sk;
         }
-        
-        Eil_vect[i].GP = Eil_vect[i].GP / (el_sk-1)/1.0;
+        if (el_sk > 1){
+        Eil_vect[i].GP = Eil_vect[i].GP / (el_sk-1)/1.0;}
         Eil_vect[i].GP = Eil_vect[i].GP * 0.4 + 0.6 * Eil_vect[i].egz;
         //medianai skaiciuot
-        for (int g=0; g<(el_sk); g++) {
-          cout<<mediana[g]<<" ";
-        }
-        cout<<std::endl;
         std::sort(mediana,mediana + (el_sk));
         if ((el_sk) % 2 != 0) 
         medianai = mediana[(el_sk - 1) / 2]; 
