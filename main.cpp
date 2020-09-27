@@ -12,7 +12,7 @@ using std::vector;
 struct duomuo {
     string Vard;
     string Pav;
-    int paz[10];
+    int paz[20];
     int egz;
     double GP = 0;
     double medianai;
@@ -21,12 +21,11 @@ struct duomuo {
 int main()
 {
     srand(time(NULL));
-    duomuo Eil; duomuo Eil_mas[5];
     vector<duomuo> Eil_vect;
     int n;
     cout<<"Iveskite kiek studentu ";
     cin>>n;
-    if (n < 0) cout<< "Studentu skaicius negali buti neigiamas"<<std::endl;
+    if (n < 0 || n > 10) cout<< "Studentu skaicius negali buti neigiamas arba didesnis uz 10"<<std::endl;
     string vardas, pavarde;
     int integer;
     int pazym;
@@ -42,8 +41,6 @@ int main()
         string veiksmas;
         cout<<"Iveskite, ka norite, kad darytu programa: Skaiciuotu jusu ivestus duomenis (iveskite 'S') ar generuotu atsitiktinus pazymius (iveskite 'G')";
         cin>>veiksmas;
-        if (veiksmas != "S" || veiksmas != "G")
-        {cout << "Tokio veiksmo nera, bandykite dar karta"; }
         int el_sk;
         if (veiksmas == "S"){
           cout<<"Iveskite egzamino paz. ";
@@ -52,7 +49,7 @@ int main()
           int k;
           cin>>k;
           cout<<"Iveskite " <<k << " pazymiu/us ";
-          if (integer >= 0 && k >= 0){
+          if ((integer >= 0 && integer <= 10) && k >= 0){
           Eil_vect[i].egz = integer;
           mediana[0]=integer;
           
@@ -85,6 +82,8 @@ int main()
           }
           el_sk = sk + 1;
         }
+        else
+        {cout << "Tokio veiksmo nera, bandykite dar karta"; }
         if (Eil_vect[i].GP != 0){
         Eil_vect[i].GP = Eil_vect[i].GP / (el_sk-1)/1.0;}
         Eil_vect[i].GP = Eil_vect[i].GP * 0.4 + 0.6 * Eil_vect[i].egz;
