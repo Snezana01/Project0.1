@@ -60,8 +60,8 @@ int main()
               if ((pazym >=1 && pazym <=10) || pazym == -1){cin>>pazym;}
               else {printf("Ivedete pazymi netinkamu formatu, bandykite dar karta");
               return 0;}
+              el_sk = p+1;
             }
-            el_sk = p+1;
           }
         else {printf("Ivedete egzamino pazymi netinkamu formatu, bandykite dar karta");
         return 0; }
