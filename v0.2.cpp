@@ -34,8 +34,10 @@ int eilute(){
     return count;
 }
 int main()
-{
-  std :: ifstream read("kursiokai.txt");
+{ 
+  FILE *read;
+  if( (read=fopen("kursiokai.txt","r"))!=NULL)
+  {std :: ifstream read("kursiokai.txt");
   int eilutes;
   eilutes = eilute()-1;
     srand(time(NULL));
@@ -88,4 +90,6 @@ int main()
       cout<< std::left<< std::setw(15)<< std::setprecision(3)<<Eil_vect[i].GP << std::setprecision(3) << Eil_vect[i].medianai <<std::endl;
     }
     read.close();
+  }
+  else {printf("Negalima atidaryti failo"); exit(0); }
 }
