@@ -111,6 +111,6 @@ int main()
     }
     }
     else{
-      printf("Studentu skaicius negali buti neigiamas arba didesnis uz 10");
+      printf("Studentu skaicius negali buti neigiamas");
       return 0;}
 }
