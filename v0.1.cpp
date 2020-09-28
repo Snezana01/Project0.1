@@ -23,9 +23,9 @@ int main()
     srand(time(NULL));
     vector<duomuo> Eil_vect;
     int n;
-    cout<<"Iveskite kiek studentu ";
+    cout<<std::endl<<"Iveskite kiek studentu ";
     cin>>n;
-    if (n < 1 || n > 10) cout<< "Studentu skaicius negali buti neigiamas arba didesnis uz 10"<<std::endl;
+    if (n > 0 && n <= 10 ) {
     string vardas, pavarde;
     int integer;
     int pazym;
@@ -45,7 +45,7 @@ int main()
         if (veiksmas == "S"){
           cout<<"Iveskite egzamino paz. ";
           cin>>integer;
-          cout<<"Iveskite pazymiu/us (kai nuspresite, kad ivedet visus, iveskite '-1' ) ";
+          cout<<"Iveskite pazymiu/us (kai nuspresite, kad ivedet visus, iveskite '-1' ) "<<std::endl;
           if (integer >= 1 && integer <= 10){
           Eil_vect[i].egz = integer;
           mediana[0]=integer;
@@ -58,10 +58,13 @@ int main()
             mediana[p+1]= pazym;
             p+=1;
             if ((pazym >=1 && pazym <=10) || pazym == -1) cin>>pazym;
+            else {printf("Ivedete pazymi netinkamu formatu, bandykite dar karta");
+            return 0;}
           el_sk = p+1;
+
           }
           }
-          else cout<<"Ivedete egzamino pazymi arba pazymiu skaiciu netinkamu formatu, bandykite dar karta"; 
+          else {printf("Ivedete egzamino pazymi netinkamu formatu, bandykite dar karta"); }
         }
         else if (veiksmas == "G"){
           Eil_vect[i].egz= 1 + ( std::rand() % ( 10 ) );
@@ -78,8 +81,8 @@ int main()
           }
           el_sk = sk + 1;
         }
-        else
-        {cout << "Tokio veiksmo nera, bandykite dar karta"; }
+        else {
+          printf("Tokio veiksmo nera, bandykite dar karta");}
         if (Eil_vect[i].GP != 0){
         Eil_vect[i].GP = Eil_vect[i].GP / (el_sk-1)/1.0;}
         Eil_vect[i].GP = Eil_vect[i].GP * 0.4 + 0.6 * Eil_vect[i].egz;
@@ -91,18 +94,23 @@ int main()
 
     }
     //ivedimas virsuj
-    cout<< "Iveskite ka norite pamatyti: jei mediana iveskite 'M', jei galutini rezultata iveskite 'R' ";
+    cout<<std::endl<< "Iveskite ka norite pamatyti: jei mediana iveskite 'M', jei galutini rezultata iveskite 'R' ";
     string ats;
     cin>>ats;
     cout << std::left << std::setw(15)<< "Vardas" <<std::left <<std::setw(15)<< "Pavarde ";
     if (ats == "R") cout<<"Galutinis paz"<<std::endl;
     else if (ats =="M") cout<<"Mediana"<<std::endl;
-    else cout<<std::endl<<"Tokio veiksmo nera, bandykite dar karta"<<std::endl;
-    cout<<"___________________________________________"<<std::endl;
+    else {
+      printf("Tokio veiksmo nera, bandykite dar karta");}
+    cout<<std::endl<<"___________________________________________"<<std::endl;
     for(int i=0;i<n;i++)
     { 
       cout << std::left << std::setw(15)<< Eil_vect[i].Vard <<std::left <<std::setw(15)<< Eil_vect[i].Pav;
       if (ats == "R") cout<< std::setprecision(3)<<Eil_vect[i].GP <<std::endl;
       else if (ats =="M") cout<< std::setprecision(3) << Eil_vect[i].medianai <<std::endl;
     }
+    }
+    else{
+    printf("Studentu skaicius negali buti neigiamas arba didesnis uz 10");
+      return 0;}
 }
