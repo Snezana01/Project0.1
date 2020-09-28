@@ -26,7 +26,7 @@ int main()
     int n;
     cout<<"Iveskite kiek studentu ";
     cin>>n;
-    if (n < 0 || n > 10) cout<< "Studentu skaicius negali buti neigiamas arba didesnis uz 10"<<std::endl;
+    if (n < 1 || n > 10) cout<< "Studentu skaicius negali buti neigiamas arba didesnis uz 10"<<std::endl;
     string vardas, pavarde;
     int integer;
     int pazym;
@@ -47,47 +47,46 @@ int main()
           cout<<"Iveskite egzamino paz. ";
           cin>>integer;
           cout<<"Iveskite pazymiu/us (kai nuspresite, kad ivedet visus, iveskite '-1' ) ";
-          if (integer >= 0 && integer <= 10){
+          if (integer >= 1 && integer <= 10){
           Eil_vect[i].egz = integer;
           Eil_vect[i].mediana.push_back(integer);
           cin>>pazym;
           int p = 0;
+          if ((pazym >=1 && pazym <=10) || pazym == -1){
           while (pazym != -1)
           {
             Eil_vect[i].paz.push_back(pazym);
             Eil_vect[i].GP+=Eil_vect[i].paz[p];
             Eil_vect[i].mediana.push_back(pazym);
+            cin>>pazym;
             p+=1;
-            if ((pazym >=0 && pazym <=10) || pazym == -1) cin>>pazym;
           el_sk = p+1;
           }
           }
+          else cout<<"Ivedete egzamino pazymi arba pazymiu skaiciu netinkamu formatu, bandykite dar";
+          }
           else cout<<"Ivedete egzamino pazymi arba pazymiu skaiciu netinkamu formatu, bandykite dar karta";
         }
-        
         else if (veiksmas == "G"){
-          Eil_vect[i].egz= 0 + ( std::rand() % ( 11 ) );
+          Eil_vect[i].egz= 1 + ( std::rand() % ( 10 ) );
           Eil_vect[i].mediana.push_back(Eil_vect[i].egz);
           cout<<"Egzamino paz. = "<< Eil_vect[i].egz<<std::endl;
           int sk;
           sk = 0 + ( std::rand() % ( 15 ) );
           cout<<"Pazymiu skaicius = "<< sk <<std::endl;
-          //cout<<Eil_vect[i].paz[0]<<" ";
           for(int k=0;k<sk;k++)
           {
-            Eil_vect[i].paz.push_back(0 + ( std::rand() % ( 11 ) ));
+            Eil_vect[i].paz.push_back(1 + ( std::rand() % ( 10 ) ));
             Eil_vect[i].mediana.push_back(Eil_vect[i].paz[k]);
             Eil_vect[i].GP+=Eil_vect[i].paz[k];
           }
           el_sk = sk + 1;
           }
-        else
-        {cout << "Tokio veiksmo nera, bandykite dar karta"; }
+        else {cout << "Tokio veiksmo nera, bandykite dar karta"; }
         if (Eil_vect[i].GP != 0){
         Eil_vect[i].GP = Eil_vect[i].GP / (el_sk-1)/1.0;}
         Eil_vect[i].GP = Eil_vect[i].GP * 0.4 + 0.6 * Eil_vect[i].egz;
         //medianai skaiciuot
-        //std::sort(Eil_vect[i].mediana,(size(Eil_vect[i].mediana)) + (el_sk));
         std::sort(Eil_vect[i].mediana.begin(), Eil_vect[i].mediana.end()); 
         if ((el_sk) % 2 != 0) 
         Eil_vect[i].medianai = Eil_vect[i].mediana[(el_sk - 1) / 2]; 
