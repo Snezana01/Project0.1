@@ -25,7 +25,7 @@ int main()
     int n;
     cout<<"Iveskite kiek studentu ";
     cin>>n;
-    if (n < 0 || n > 10) cout<< "Studentu skaicius negali buti neigiamas arba didesnis uz 10"<<std::endl;
+    if (n < 1 || n > 10) cout<< "Studentu skaicius negali buti neigiamas arba didesnis uz 10"<<std::endl;
     string vardas, pavarde;
     int integer;
     int pazym;
@@ -46,7 +46,7 @@ int main()
           cout<<"Iveskite egzamino paz. ";
           cin>>integer;
           cout<<"Iveskite pazymiu/us (kai nuspresite, kad ivedet visus, iveskite '-1' ) ";
-          if (integer >= 0 && integer <= 10){
+          if (integer >= 1 && integer <= 10){
           Eil_vect[i].egz = integer;
           mediana[0]=integer;
           cin>>pazym;
@@ -57,28 +57,24 @@ int main()
             Eil_vect[i].GP+=Eil_vect[i].paz[p];
             mediana[p+1]= pazym;
             p+=1;
-            if ((pazym >=0 && pazym <=10) || pazym == -1) cin>>pazym;
+            if ((pazym >=1 && pazym <=10) || pazym == -1) cin>>pazym;
           el_sk = p+1;
           }
           }
-          else cout<<"Ivedete egzamino pazymi arba pazymiu skaiciu netinkamu formatu, bandykite dar karta";
-          
+          else cout<<"Ivedete egzamino pazymi arba pazymiu skaiciu netinkamu formatu, bandykite dar karta"; 
         }
-        
         else if (veiksmas == "G"){
-          Eil_vect[i].egz= 0 + ( std::rand() % ( 11 ) );
+          Eil_vect[i].egz= 1 + ( std::rand() % ( 10 ) );
           mediana[0]=Eil_vect[i].egz;
           cout<<"Egzamino paz. = "<< Eil_vect[i].egz<<std::endl;
           int sk;
-          sk = 0 + ( std::rand() % ( 15 ) );
+          sk = ( std::rand() % ( 15 ) );
           cout<<"Pazymiu skaicius = "<< sk <<std::endl;
-          //cout<<Eil_vect[i].paz[0]<<" ";
           for(int k=0;k<sk;k++)
           {
-            Eil_vect[i].paz[k]= 0 + ( std::rand() % ( 11 ) );
+            Eil_vect[i].paz[k]= 1 + ( std::rand() % ( 10 ) );
             mediana[k+1]=Eil_vect[i].paz[k];
             Eil_vect[i].GP+=Eil_vect[i].paz[k];
-            //cout<<Eil_vect[i].paz[k+1]<<" ";
           }
           el_sk = sk + 1;
         }
@@ -109,5 +105,4 @@ int main()
       if (ats == "R") cout<< std::setprecision(3)<<Eil_vect[i].GP <<std::endl;
       else if (ats =="M") cout<< std::setprecision(3) << Eil_vect[i].medianai <<std::endl;
     }
-
 }
