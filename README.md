@@ -4,3 +4,4 @@
 3. Pažymiai saugomi masyve versijoje 0.1, vektoriuje versijoje 0.1.2
 4. Pateikiami duomenys yra studento vardas ir pavardė, jo egzamino rezultatas bei pažymiai
 5. Pažymių galima įvesti tiek, kiek nori vartotojas.
+6. Versija 0.2 yra sutrumpinta, norint neperkrauti programos, bei nesusipainioti kode, cia nera atsitiktinų pažymių generavimo, bei pažymių surinkimo ranka. Tačiau esant būtinybei galiu apjungti viską kartu.
