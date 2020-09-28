@@ -25,7 +25,7 @@ int main()
     int n;
     cout<<std::endl<<"Iveskite kiek studentu ";
     cin>>n;
-    if (n > 0 && n <= 10 ) {
+    if (n > 0) {
     string vardas, pavarde;
     int integer;
     int pazym;
@@ -61,7 +61,6 @@ int main()
             else {printf("Ivedete pazymi netinkamu formatu, bandykite dar karta");
             return 0;}
           el_sk = p+1;
-
           }
           }
           else {printf("Ivedete egzamino pazymi netinkamu formatu, bandykite dar karta"); }
@@ -111,6 +110,6 @@ int main()
     }
     }
     else{
-    printf("Studentu skaicius negali buti neigiamas arba didesnis uz 10");
+    printf("Studentu skaicius negali buti neigiamas");
       return 0;}
 }
