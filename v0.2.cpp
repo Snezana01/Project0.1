@@ -63,13 +63,24 @@ int main()
         for(int j=0;j<(kiek);j++)
         {
           read>>pazym;
+          if (pazym >=1 && pazym <=10){
           Eil_vect[i].paz.push_back(pazym);
           Eil_vect[i].GP+=Eil_vect[i].paz[j];
           Eil_vect[i].mediana.push_back(pazym);
+          }
+          else {
+            printf("Faile yra netinkamo formato pazymys");
+            return 0;}
         }
           read>>integer;
+          if (integer >=1 && integer <=10){
           Eil_vect[i].egz=integer;
           Eil_vect[i].mediana.push_back(integer);
+          }
+          else {
+            printf("Faile yra netinkamo formato pazymys");
+            return 0;}
+
     
       if (Eil_vect[i].GP != 0){
         Eil_vect[i].GP = Eil_vect[i].GP / (kiek)/1.0;}
@@ -91,5 +102,5 @@ int main()
     }
     read.close();
   }
-  else {printf("Negalima atidaryti failo"); exit(0); }
+  else {printf("Negalima atidaryti failo"); exit(0);}
 }
